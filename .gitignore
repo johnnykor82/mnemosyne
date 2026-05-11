@@ -1,0 +1,46 @@
+# Plugin runtime data
+db/
+*.db
+*.db-shm
+*.db-wal
+
+# Secrets
+.env
+config.yaml
+
+# Standard Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Packaging
+dist/
+*.egg-info/
+*.whl
+*.tar.gz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Logs
+*.log
+
+# Runtime data
+forgotten.jsonl
+import_cursor.json
+recovery_cursor.json
+trace.jsonl*
+
+# Backup files
+*.bak
+*.before-*

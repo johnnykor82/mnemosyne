@@ -1,0 +1,32 @@
+name: mnemosyne
+version: 0.1.0
+description: "Mnemosyne — composite memory plugin combining Honcho (user model) and Hindsight (facts) with date tagging, repetition counting, conflict detection, recovery, and explicit forgetting."
+author: "johnnykor82 <johnnykor@gmail.com>"
+
+# Exclusive plugins (memory providers) are activated through `memory.provider` config,
+# not through `plugins.enabled`. Without this, hermes auto-detects on `register_memory_provider`
+# string in __init__.py — but explicit beats implicit and avoids the auto-detect edge cases.
+kind: exclusive
+
+# Curated tool surface exposed to the LLM via MnemosyneMemoryProvider.get_tool_schemas().
+# Listed here so `hermes plugins info mnemosyne` and similar introspection paths know
+# which tools this plugin contributes.
+provides_tools:
+  - memory_profile
+  - memory_reasoning
+  - memory_conclude
+  - memory_recall
+  - memory_reflect
+  - memory_forget
+
+pip_dependencies:
+  - honcho-ai
+  - "hindsight-client>=0.4.22"
+
+hooks:
+  - on_memory_write
+  - on_session_end
+  - on_session_switch
+  - on_pre_compress
+  - on_delegation
+  - on_turn_start

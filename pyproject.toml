@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mnemosyne"
+version = "0.1.0"
+description = "Mnemosyne — composite long-term memory plugin for Hermes Agent. Wraps Honcho (user model) and Hindsight (facts) behind a single MemoryProvider interface with date tags, repetition counting, conflict detection, recovery, and explicit forgetting."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "johnnykor82", email = "johnnykor@gmail.com"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "honcho-ai",
+    "hindsight-client>=0.4.22"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0.0", "ruff>=0.1.0"]
+
+[project.urls]
+Homepage = "https://github.com/johnnykor82/mnemosyne"
+Repository = "https://github.com/johnnykor82/mnemosyne"
+"Bug Tracker" = "https://github.com/johnnykor82/mnemosyne/issues"
+
+[tool.setuptools]
+# Flat layout — all .py files live at the package root, plugin is discovered
+# by Hermes via plugin.yaml and the `register_memory_provider` hook in __init__.py.
+py-modules = [
+    "cli", "config", "conflict", "dedup", "fact_store",
+    "forget", "importer", "recovery",
+]
