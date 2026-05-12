@@ -32,3 +32,8 @@ py-modules = [
     "cli", "config", "conflict", "dedup", "fact_store",
     "forget", "importer", "recovery",
 ]
+
+# Note: pytest config lives in tests/pytest.ini (not here). Putting it there
+# pins pytest's rootdir to tests/, preventing it from walking up to the plugin
+# root and trying to import __init__.py — which uses package-relative imports
+# resolvable only under the Hermes plugin loader.
